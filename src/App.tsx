@@ -4,6 +4,9 @@ import { Provider } from "react-redux";
 
 import { router } from "./constants/routesConfig";
 import store from "./store";
+import { makeServer } from "./mirage";
+
+makeServer();
 
 function App() {
   return (

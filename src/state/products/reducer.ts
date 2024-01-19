@@ -19,6 +19,7 @@ const productsSlice = createSlice({
   } as ProductsState,
   reducers: {
     setProducts(state, action: PayloadAction<Product[]>) {
+      console.log(action.payload);
       state.data = action.payload;
     },
   },
@@ -32,8 +33,7 @@ export const doGetProductsRequest = () => async (dispatch: Dispatch) => {
 
     if (!response?.data) return;
 
-    const { data: products } = response.data;
-
+    const { products } = response.data;
     dispatch(setProducts(products));
 
     return products;
