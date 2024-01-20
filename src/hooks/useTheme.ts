@@ -2,13 +2,14 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useTypedSelector } from "./useTypedSelector";
 import { setTheme } from "../state/ui";
+import { Theme } from "../constants/enums";
 
 const THEME_KEY = "theme";
 
 type UseThemeProps = "light" | "dark";
 
 interface ThemeValues {
-  theme: "light" | "dark";
+  theme: Theme;
   onThemeChange: () => void;
 }
 
@@ -32,13 +33,13 @@ const useTheme = (initialTheme: UseThemeProps): ThemeValues => {
   }, [dispatch, initialTheme]);
 
   const onThemeChange = () => {
-    const newTheme = currentTheme === "light" ? "dark" : "light";
+    const newTheme = currentTheme === Theme.light ? Theme.dark : Theme.light;
     dispatch(setTheme(newTheme));
     localStorage.setItem(THEME_KEY, newTheme);
   };
 
   return {
-    theme: currentTheme,
+    theme: currentTheme as Theme,
     onThemeChange,
   };
 };
