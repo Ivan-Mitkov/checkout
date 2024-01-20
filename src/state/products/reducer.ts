@@ -3,7 +3,6 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { getProductsRequest } from "../../api/productsService";
 
-// Define a type for the slice state
 interface Product {
   id: string;
   name: string;
@@ -19,7 +18,6 @@ const productsSlice = createSlice({
   } as ProductsState,
   reducers: {
     setProducts(state, action: PayloadAction<Product[]>) {
-      console.log(action.payload);
       state.data = action.payload;
     },
   },
