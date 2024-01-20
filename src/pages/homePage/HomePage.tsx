@@ -1,11 +1,17 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { doGetProductsRequest } from "../../state/products";
+import {
+  doGetCitiesRequest,
+  doGetCountriesRequest,
+} from "../../state/locations";
 import useBackendCall from "../../hooks/useBackendCall";
-import { getProductsRequest } from "../../api/productsService";
 
 const HomePage = () => {
-  useBackendCall(doGetProductsRequest);
+  useBackendCall([
+    doGetProductsRequest,
+    doGetCitiesRequest,
+    doGetCountriesRequest,
+  ]);
   return <div>HomePage</div>;
 };
 

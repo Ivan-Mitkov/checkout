@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
-const useBackendCall = (apiFunc: any) => {
+const useBackendCall = (apiFuncArray: any[]) => {
   const dispatch = useDispatch();
 
   // state
@@ -11,7 +11,7 @@ const useBackendCall = (apiFunc: any) => {
   const executeRequest = async () => {
     setLoading(true);
     try {
-      await dispatch(apiFunc());
+      apiFuncArray.forEach(async (apiFunc) => await dispatch(apiFunc()));
     } catch (err: any) {
       console.log(err);
       setError(err.message || "Unexpected Error!");

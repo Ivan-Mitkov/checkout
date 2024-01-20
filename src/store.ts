@@ -1,9 +1,11 @@
 import { productsReducer } from "./state";
+import { locationReducer } from "./state";
 import { configureStore } from "@reduxjs/toolkit";
 
 const store = configureStore({
   reducer: {
     products: productsReducer,
+    locations: locationReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
