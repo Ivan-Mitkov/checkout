@@ -16,6 +16,10 @@ export function makeServer() {
         get price() {
           return faker.commerce.price;
         },
+
+        get imageUrl() {
+          return faker.image.urlLoremFlickr({ category: "product" });
+        },
       }),
       country: Factory.extend<Partial<Country>>({
         get name() {
