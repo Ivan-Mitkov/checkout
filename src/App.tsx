@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 
 import { router } from "./constants/routesConfig";
 import store from "./store";
+import { ThemeProvider } from "./components";
 import { makeServer } from "./mirage";
 
 makeServer();
@@ -11,7 +12,9 @@ makeServer();
 function App() {
   return (
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <ThemeProvider>
+        <RouterProvider router={router} />
+      </ThemeProvider>
     </Provider>
   );
 }

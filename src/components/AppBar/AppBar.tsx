@@ -1,12 +1,14 @@
 import React from "react";
+import useTheme from "../../hooks/useTheme";
 
 import styles from "./AppBar.module.scss";
 
 const AppBar = () => {
+  const { theme, onThemeChange } = useTheme("light");
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onClick={onThemeChange}>
       <div className={styles.menuIcon}></div>
-      App Bar
+      {theme}
     </div>
   );
 };

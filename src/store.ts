@@ -1,11 +1,11 @@
-import { productsReducer } from "./state";
-import { locationReducer } from "./state";
+import { productsReducer, locationReducer, uiReducer } from "./state";
 import { configureStore } from "@reduxjs/toolkit";
 
 const store = configureStore({
   reducer: {
     products: productsReducer,
     locations: locationReducer,
+    ui: uiReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
