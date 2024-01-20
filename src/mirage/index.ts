@@ -53,7 +53,7 @@ export function makeServer() {
 
     seeds(s) {
       s.createList("product", 20);
-      s.createList("city", 10);
+      s.createList("city", 30);
       s.loadFixtures("countries");
     },
   });

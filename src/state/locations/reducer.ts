@@ -27,6 +27,14 @@ const locationSlice = createSlice({
       state.cities = action.payload;
     },
     setCountries(state, action: PayloadAction<Country[]>) {
+      const countriesLenght = state.countries.length;
+      if (countriesLenght) {
+        const citiesWithCountry = state.cities.map((city, index) => ({
+          ...city,
+          country: [action.payload[index % countriesLenght]],
+        }));
+        state.cities = citiesWithCountry;
+      }
       state.countries = action.payload;
     },
   },
