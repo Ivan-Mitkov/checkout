@@ -1,0 +1,14 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+
+  .link{
+    font-weight: 700;
+    cursor: pointer;
+    
+  }
+}
