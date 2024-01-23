@@ -23,7 +23,7 @@ const CartPage = () => {
     <div className={styles.container}>
       <h1>Products</h1>
       <CartList data={products} />
-      <div>
+      <div className={styles.buttonContainer}>
         <PrimaryButton text="Order" onClick={(e) => console.log(e)} />
       </div>
     </div>
