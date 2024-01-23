@@ -3,14 +3,19 @@
   align-items: center;
   justify-content: flex-end;
   padding: 20px;
-  position: relative;
+  position: fixed;
+  top:0;
+  left:0;
+  right: 0;
+  z-index: 2;
+  background-color: inherit;
 
-  .switch{
+.switch{
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-
+    z-index: 10;
   }
   
 }
