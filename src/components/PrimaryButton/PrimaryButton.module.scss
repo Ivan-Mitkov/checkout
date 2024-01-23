@@ -1,9 +1,46 @@
+.button{
+  border-radius: 6px;
+  border: 1px solid transparent !important;
+  padding: 6px 17px !important;
+  height: 40px !important;
+  min-width: 150px !important;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
 .lightTheme{
-background-color: #244D75;
-color: #F5F4F2;
+  background-color: rgb(36, 77, 117);
+  color: #F5F4F2;
+
+    &:hover, &:active{
+        background: rgba(36, 77, 117,0.8) !important;
+        border: 1px solid transparent !important;
+        padding: 6px 17px !important;
+
+    }
+
+    &:focus-visible{
+      outline:2px solid rgba(36, 77, 117,0.2) !important;
+    }
+
 }
 
 .darkTheme{
-background-color: #E68B15;
-color: #121212;
+  background-color: rgb(230, 139, 21);
+  color: #121212;
+
+    &:hover, &:active{
+      background: rgb(230, 139, 21,0.8) !important;
+      border: 1px solid transparent !important;
+      color: #121212 !important;
+      padding: 6px 17px !important;
+
+    }
+
+    &:focus-visible{
+    outline:2px solid rgba(36, 77, 117,0.2) !important;
+    color: #121212;
+
+    }
 }

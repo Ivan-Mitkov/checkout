@@ -17,14 +17,14 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
 }) => {
   const theme = useTypedSelector((state) => state.ui.theme);
 
-  const themeClassName = isLightTheme(theme)
+  const themeClassName: string = isLightTheme(theme)
     ? styles.lightTheme
     : styles.darkTheme;
 
   return (
     <Button
       type="primary"
-      className={[themeClassName, ...classNames].join(" ")}
+      className={[styles.button, themeClassName, ...classNames].join(" ")}
       onClick={onClick}
     >
       {text}
