@@ -1,7 +1,6 @@
 import React from "react";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { isLightTheme } from "../../utils/uiUtils";
-import { Theme } from "../../constants/enums";
 
 import styles from "./ThemeProvider.module.scss";
 

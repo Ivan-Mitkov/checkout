@@ -7,7 +7,7 @@ import {
 import useBackendCall from "../../hooks/useBackendCall";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 
-import { CartList } from "../../components";
+import { CartList, PrimaryButton } from "../../components";
 import styles from "./CartPage.module.scss";
 
 const CartPage = () => {
@@ -23,6 +23,9 @@ const CartPage = () => {
     <div className={styles.container}>
       <h1>Products</h1>
       <CartList data={products} />
+      <div>
+        <PrimaryButton text="Order" onClick={(e) => console.log(e)} />
+      </div>
     </div>
   );
 };

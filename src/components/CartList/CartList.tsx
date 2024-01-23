@@ -8,6 +8,7 @@ import styles from "./CartList.module.scss";
 export interface CartListProps<T = CartItem> {
   data: T[];
 }
+
 const CartList: React.FC<CartListProps> = ({ data }) => {
   return (
     <div className={styles.container}>
