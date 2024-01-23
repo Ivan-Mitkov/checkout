@@ -1,3 +1,3 @@
-export { default as Cart } from "./cart";
-export { default as Receipt } from "./receipt";
-export { default as HomePage } from "./homePage";
+export { default as ReceiptPage } from "./receiptPage";
+export { default as CartPage } from "./cartPage";
+export { default as ErrorPage } from "./errorPage";
