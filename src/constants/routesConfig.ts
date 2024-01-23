@@ -1,6 +1,6 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import { HomePage, Cart, Receipt } from "../pages";
+import { CartPage, ReceiptPage, ErrorPage } from "../pages";
 import { Layout } from "../components";
 
 export const router = createBrowserRouter([
@@ -8,18 +8,19 @@ export const router = createBrowserRouter([
     id: "root",
     path: "/",
     Component: Layout,
+    errorElement: ErrorPage(),
     children: [
       {
-        path: "/",
-        Component: HomePage,
+        index: true,
+        Component: CartPage,
       },
       {
         path: "/cart",
-        Component: Cart,
+        Component: CartPage,
       },
       {
         path: "/receipt",
-        Component: Receipt,
+        Component: ReceiptPage,
       },
     ],
   },

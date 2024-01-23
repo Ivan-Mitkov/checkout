@@ -6,13 +6,13 @@ import {
 } from "../../state/locations";
 import useBackendCall from "../../hooks/useBackendCall";
 
-const HomePage = () => {
+const CartPage = () => {
   useBackendCall([
     doGetProductsRequest,
     doGetCitiesRequest,
     doGetCountriesRequest,
   ]);
-  return <div>HomePage</div>;
+  return <div>CartPage</div>;
 };
 
-export default HomePage;
+export default CartPage;
