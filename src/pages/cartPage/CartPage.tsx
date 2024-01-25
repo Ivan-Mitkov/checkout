@@ -35,7 +35,7 @@ const CartPage: React.FC = () => {
       </div>
       {showModal && (
         <SideModal handleClose={handleClose}>
-          <CheckoutForm />
+          <CheckoutForm onClose={handleClose} />
         </SideModal>
       )}
     </div>

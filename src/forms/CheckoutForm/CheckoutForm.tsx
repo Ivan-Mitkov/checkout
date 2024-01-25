@@ -1,11 +1,20 @@
 import React from "react";
 import { Input, Select } from "antd";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+
+import Header from "./Header";
 
 import styles from "./ChackoutForm.module.scss";
-const CheckoutForm = () => {
+
+interface CheckoutFormProps {
+  onClose: () => void;
+}
+const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose }) => {
+  const theme = useTypedSelector((state) => state.ui.theme);
+
   return (
     <div className={styles.container}>
-      <div>Title</div>
+      <Header title="Order" onClose={onClose} theme={theme} />
       <div className={styles.content}>
         <div>Name</div>
         <Input />
