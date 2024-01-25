@@ -5,6 +5,8 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { isLightTheme } from "../../utils/uiUtils";
 import { KeyboardEvent } from "../../types/";
 import styles from "./SideModal.module.scss";
 
@@ -17,6 +19,8 @@ const SideModal: React.ElementType<SideModalProps> = ({
   handleClose,
   children,
 }) => {
+  const theme = useTypedSelector((state) => state.ui.theme);
+
   const [isClosing, setIsClosing] = useState(false);
 
   const modalRef = useRef<HTMLInputElement>(null);
@@ -30,9 +34,12 @@ const SideModal: React.ElementType<SideModalProps> = ({
 
   useEffect(() => {
     document.addEventListener("keydown", onEscapePress, false);
+    const body = document.querySelector("body");
+    body?.classList.add(styles.hideScroll);
 
     return () => {
       document.removeEventListener("keydown", onEscapePress, false);
+      body?.classList.remove(styles.hideScroll);
     };
   }, []);
 
@@ -64,6 +71,10 @@ const SideModal: React.ElementType<SideModalProps> = ({
     };
   }, [modalRef]);
 
+  const themeClassName: string = isLightTheme(theme)
+    ? styles.lightTheme
+    : styles.darkTheme;
+
   return (
     <div ref={modalRef} className={styles.container} onClick={(e) => {}}>
       <div
@@ -73,6 +84,7 @@ const SideModal: React.ElementType<SideModalProps> = ({
         ref={modalContentRef}
         className={[
           styles.contentContainer,
+          themeClassName,
           isClosing ? styles.close : "",
         ].join(" ")}
       >
