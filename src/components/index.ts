@@ -5,3 +5,4 @@ export { default as ThemeButton } from "./ThemeButton";
 export { default as Cart } from "./Cart";
 export { default as CartList } from "./CartList";
 export { default as PrimaryButton } from "./PrimaryButton";
+export { default as SideModal } from "./SideModal";
