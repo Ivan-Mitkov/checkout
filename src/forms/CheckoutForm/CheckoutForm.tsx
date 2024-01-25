@@ -50,6 +50,14 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose }) => {
   );
 
   const updateFields = (fields: Partial<FormData>) => {
+    const isCountryChanged = Object.keys(fields)[0] === "country";
+
+    if (isCountryChanged) {
+      setData((prev) => {
+        return { ...prev, city: INITIAL_DATA.city };
+      });
+    }
+
     setData((prev) => {
       return { ...prev, ...fields };
     });
