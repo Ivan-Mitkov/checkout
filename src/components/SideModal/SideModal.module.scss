@@ -10,6 +10,7 @@
   align-items: center;
   z-index: 999;
 
+
   .overlay {
     position: fixed;
     top: 0;
@@ -34,6 +35,8 @@
     animation: slideIn 0.3s ease-in-out;
     z-index: 1000;
     overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
 
     @media only screen and (max-width: 1000px) {
       width: 80%;
@@ -45,8 +48,10 @@
 
     .content {
       overflow-y: auto;
-      height: 80%;
+      height: 100%;
       padding-right: 20px;
+      display: flex;
+      flex-direction: column;
     }
 
   

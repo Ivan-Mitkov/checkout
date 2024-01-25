@@ -85,8 +85,8 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose }) => {
   return (
     <div className={styles.container}>
       <Header title="Order" onClose={onClose} theme={theme} />
-      <form>
-        {isFirstStep ? step : steps}
+      <form className={styles.form}>
+        <div className={styles.formContent}>{isFirstStep ? step : steps}</div>
         <Footer
           isFirstStep={isFirstStep}
           isLastStep={isLastStep}
