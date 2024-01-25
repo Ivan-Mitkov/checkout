@@ -7,3 +7,19 @@ export type CartItem = {
 export interface KeyboardEvent {
   key: string;
 }
+
+export type City = {
+  id: string;
+  name: string;
+  country?: Country;
+};
+
+export type Country = {
+  id: string;
+  name: string;
+};
+
+export type SelectOptions = {
+  label: string;
+  value: string;
+}[];

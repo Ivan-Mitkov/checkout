@@ -6,6 +6,7 @@ import { getCountriesRequest, getCitiesRequest } from "../../api/geoService";
 interface City {
   id: string;
   name: string;
+  country?:Country
 }
 
 interface Country {
@@ -31,7 +32,7 @@ const locationSlice = createSlice({
       if (countriesLenght) {
         const citiesWithCountry = state.cities.map((city, index) => ({
           ...city,
-          country: [action.payload[index % countriesLenght]],
+          country: action.payload[index % countriesLenght],
         }));
         state.cities = citiesWithCountry;
       }

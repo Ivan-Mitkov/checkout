@@ -1,14 +1,5 @@
 import apiClient from "./apiClient";
-
-export type City = {
-  id: string;
-  name: string;
-  country: string;
-};
-export type Country = {
-  id: string;
-  name: string;
-};
+import { City, Country } from "../types";
 
 type CountryResponse = {
   country: Country[];
