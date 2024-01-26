@@ -4,4 +4,16 @@
   row-gap: 30px;
   column-gap: 10px;
   padding: 20px;
+
+  *:disabled {
+    background-color: rgb(182, 182, 182) !important;
+    color: #121212;
+    opacity: 1;
+  }
+
+ .select{
+    span{
+      color:#121212 !important;
+    }
+ }
 }

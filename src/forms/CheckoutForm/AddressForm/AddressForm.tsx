@@ -37,33 +37,49 @@ const AddressForm: React.FC<AddressFormProps> = ({
         onChange={(e) => updateFields({ name: e.target.value })}
         value={name}
         disabled={isDisabled}
+        placeholder="Name"
       />
       <div>Email</div>
       <Input
         onChange={(e) => updateFields({ email: e.target.value })}
         value={email}
         disabled={isDisabled}
+        placeholder="email"
       />
       <div>Country</div>
       <Select
+        style={{
+          background: isDisabled ? "rgb(182, 182, 182)" : "transparent",
+          borderRadius: "6px",
+        }}
         onChange={(value) => updateFields({ country: value })}
         value={country}
         options={countriesOptions}
         disabled={isDisabled}
+        className={styles.select}
+        allowClear
+        placeholder="Select country"
       />
       <div>City</div>
       <Select
+        style={{
+          background: isDisabled ? "rgb(182, 182, 182)" : "transparent",
+          borderRadius: "6px",
+        }}
         onChange={(value) => updateFields({ city: value })}
         value={city}
         options={citiesOptions}
         disabled={isDisabled}
+        className={styles.select}
+        allowClear
+        placeholder="Select city"
       />
       <div>Street</div>
-      <Select
-        onChange={(value) => updateFields({ street: value })}
+      <Input
+        onChange={(e) => updateFields({ street: e.target.value })}
         value={street}
-        options={citiesOptions}
         disabled={isDisabled}
+        placeholder="Street address"
       />
     </div>
   );
