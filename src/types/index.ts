@@ -23,3 +23,10 @@ export type SelectOptions = {
   label: string;
   value: string;
 }[];
+
+export type Rules = {
+  [key: string]: {
+    validator: (value: any) => boolean;
+    errorMessage: string;
+  };
+};

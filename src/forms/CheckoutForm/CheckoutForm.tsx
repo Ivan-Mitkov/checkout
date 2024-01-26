@@ -1,11 +1,14 @@
 import React, { useMemo, useState, FormEvent } from "react";
+import isEmpty from "lodash.isempty";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useMultistepForm } from "../../hooks/useMultistepForm";
+import { useValidation } from "../../hooks/useValidation";
 
 import Header from "./Header";
 import Footer from "./Footer";
 import AddressForm from "./AddressForm";
 import PromoForm from "./PromoForm";
+import { Rules } from "../../types";
 import styles from "./ChackoutForm.module.scss";
 
 type FormData = {
@@ -26,11 +29,37 @@ const INITIAL_DATA: FormData = {
   promoCode: "",
 };
 
+const FieldsToValidate = ["name", "email", "country", "city", "street"];
+
+const ValidationRules: Rules = {
+  name: {
+    validator: (v: any) => !isEmpty(v),
+    errorMessage: "Name is mandatory",
+  },
+  email: {
+    validator: (v: any) => !isEmpty(v),
+    errorMessage: "Email is mandatory",
+  },
+  country: {
+    validator: (v: any) => !isEmpty(v),
+    errorMessage: "Country is mandatory",
+  },
+  city: {
+    validator: (v: any) => !isEmpty(v),
+    errorMessage: "City is mandatory",
+  },
+  street: {
+    validator: (v: any) => !isEmpty(v),
+    errorMessage: "Street is mandatory",
+  },
+};
+
 interface CheckoutFormProps {
   onClose: () => void;
 }
 const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose }) => {
   const [data, setData] = useState(INITIAL_DATA);
+  const [shouldValidate, setShouldValidate] = useState(false);
 
   const theme = useTypedSelector((state) => state.ui.theme);
 
@@ -49,6 +78,13 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose }) => {
   const citiesOptions = useMemo(
     () => cities.filter((city) => city?.country === data.country),
     [data.country]
+  );
+
+  const errors = useValidation(
+    data,
+    FieldsToValidate,
+    ValidationRules,
+    shouldValidate
   );
 
   const updateFields = (fields: Partial<FormData>) => {
@@ -76,6 +112,14 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose }) => {
       <PromoForm {...data} updateFields={updateFields} />,
     ]);
 
+  const handleNext = () => {
+    setShouldValidate(true);
+
+    if (!isEmpty(errors)) return;
+
+    next();
+  };
+
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
 
@@ -84,32 +128,36 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose }) => {
     alert(JSON.stringify(data));
   };
 
+  const renderFormContent = () => (
+    <div className={styles.formContent}>
+      {isFirstStep ? (
+        step
+      ) : (
+        <>
+          <AddressForm
+            {...data}
+            updateFields={updateFields}
+            countriesOptions={countries}
+            citiesOptions={citiesOptions}
+            isDisabled={true}
+          />
+          <PromoForm {...data} updateFields={updateFields} />
+        </>
+      )}
+    </div>
+  );
+
   return (
     <div className={styles.container}>
       <Header title="Order" onClose={onClose} theme={theme} />
       <form className={styles.form}>
-        <div className={styles.formContent}>
-          {isFirstStep ? (
-            step
-          ) : (
-            <>
-              <AddressForm
-                {...data}
-                updateFields={updateFields}
-                countriesOptions={countries}
-                citiesOptions={citiesOptions}
-                isDisabled={true}
-              />
-              <PromoForm {...data} updateFields={updateFields} />
-            </>
-          )}
-        </div>
+        {renderFormContent()}
         <Footer
           isFirstStep={isFirstStep}
           isLastStep={isLastStep}
           onSubmit={onSubmit}
           back={back}
-          next={next}
+          next={handleNext}
           onClose={onClose}
         />
       </form>
