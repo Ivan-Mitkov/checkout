@@ -13,7 +13,7 @@ const ConfirmationModal: React.FC<ConfirmationModalPropTypes> = ({
   onCancel,
 }) => {
   return (
-    <Modal title="Basic Modal" open={isOpen} onOk={onOk} onCancel={onCancel}>
+    <Modal title="Confirm Order" open={isOpen} onOk={onOk} onCancel={onCancel}>
       <p>Are you sure?</p>
     </Modal>
   );
