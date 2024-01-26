@@ -12,6 +12,7 @@ type FormData = {
   name: string;
   city: string;
   country: string;
+  street: string;
   email: string;
   promoCode: string;
 };
@@ -21,6 +22,7 @@ const INITIAL_DATA: FormData = {
   email: "",
   country: "",
   city: "",
+  street: "",
   promoCode: "",
 };
 
@@ -86,7 +88,22 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose }) => {
     <div className={styles.container}>
       <Header title="Order" onClose={onClose} theme={theme} />
       <form className={styles.form}>
-        <div className={styles.formContent}>{isFirstStep ? step : steps}</div>
+        <div className={styles.formContent}>
+          {isFirstStep ? (
+            step
+          ) : (
+            <>
+              <AddressForm
+                {...data}
+                updateFields={updateFields}
+                countriesOptions={countries}
+                citiesOptions={citiesOptions}
+                isDisabled={true}
+              />
+              <PromoForm {...data} updateFields={updateFields} />
+            </>
+          )}
+        </div>
         <Footer
           isFirstStep={isFirstStep}
           isLastStep={isLastStep}
