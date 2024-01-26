@@ -46,6 +46,7 @@ const AddressForm: React.FC<AddressFormProps> = ({
       <div>Name</div>
       <div>
         <Input
+          className={styles.input}
           onChange={(e) => updateFields({ name: e.target.value })}
           value={name}
           disabled={isDisabled}
@@ -56,6 +57,7 @@ const AddressForm: React.FC<AddressFormProps> = ({
       <div>Email</div>
       <div>
         <Input
+          className={styles.input}
           onChange={(e) => updateFields({ email: e.target.value })}
           value={email}
           disabled={isDisabled}
@@ -71,7 +73,7 @@ const AddressForm: React.FC<AddressFormProps> = ({
             borderRadius: "6px",
           }}
           onChange={(value) => updateFields({ country: value })}
-          value={country}
+          value={country || null}
           options={countriesOptions}
           disabled={isDisabled}
           className={styles.select}
@@ -88,7 +90,7 @@ const AddressForm: React.FC<AddressFormProps> = ({
             borderRadius: "6px",
           }}
           onChange={(value) => updateFields({ city: value })}
-          value={city}
+          value={city || null}
           options={citiesOptions}
           disabled={isDisabled}
           className={styles.select}
@@ -100,6 +102,7 @@ const AddressForm: React.FC<AddressFormProps> = ({
       <div>Street</div>
       <div>
         <Input
+          className={styles.input}
           onChange={(e) => updateFields({ street: e.target.value })}
           value={street}
           disabled={isDisabled}
