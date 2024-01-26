@@ -108,6 +108,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose }) => {
         updateFields={updateFields}
         countriesOptions={countries}
         citiesOptions={citiesOptions}
+        errors={errors}
       />,
       <PromoForm {...data} updateFields={updateFields} />,
     ]);
@@ -140,6 +141,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose }) => {
             countriesOptions={countries}
             citiesOptions={citiesOptions}
             isDisabled={true}
+            errors={errors}
           />
           <PromoForm {...data} updateFields={updateFields} />
         </>
