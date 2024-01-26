@@ -1,1 +1,6 @@
-export { default, doGetCitiesRequest, doGetCountriesRequest } from "./reducer";
+export {
+  default,
+  doGetCitiesRequest,
+  doGetCountriesRequest,
+  setSelectedCountry,
+} from "./reducer";

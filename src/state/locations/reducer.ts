@@ -6,7 +6,7 @@ import { getCountriesRequest, getCitiesRequest } from "../../api/geoService";
 interface City {
   id: string;
   name: string;
-  country?:Country
+  country?: Country;
 }
 
 interface Country {
@@ -16,16 +16,21 @@ interface Country {
 interface LocationState {
   cities: City[];
   countries: Country[];
+  selectedCountry?: Country | null;
 }
 const locationSlice = createSlice({
-  name: "products",
+  name: "location",
   initialState: {
     cities: [],
     countries: [],
+    selectedCountry: null,
   } as LocationState,
   reducers: {
     setCities(state, action: PayloadAction<City[]>) {
       state.cities = action.payload;
+    },
+    setSelectedCountry(state, action: PayloadAction<Country>) {
+      state.selectedCountry = action.payload;
     },
     setCountries(state, action: PayloadAction<Country[]>) {
       const countriesLenght = state.countries.length;
@@ -41,7 +46,8 @@ const locationSlice = createSlice({
   },
 });
 
-export const { setCities, setCountries } = locationSlice.actions;
+export const { setCities, setCountries, setSelectedCountry } =
+  locationSlice.actions;
 
 export const doGetCitiesRequest = () => async (dispatch: Dispatch) => {
   try {
@@ -64,6 +70,7 @@ export const doGetCountriesRequest = () => async (dispatch: Dispatch) => {
     if (!response?.data) return;
 
     const { countries } = response.data;
+
     dispatch(setCountries(countries));
 
     return countries;

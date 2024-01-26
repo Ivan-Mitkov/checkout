@@ -17,6 +17,7 @@ export type City = {
 export type Country = {
   id: string;
   name: string;
+  vat: number;
 };
 
 export type SelectOptions = {

@@ -21,11 +21,6 @@ export function makeServer() {
           return faker.image.urlLoremFlickr({ category: "product" });
         },
       }),
-      country: Factory.extend<Partial<Country>>({
-        get name() {
-          return faker.location.country;
-        },
-      }),
       city: Factory.extend<Partial<City>>({
         get name() {
           return faker.location.city;
@@ -48,10 +43,10 @@ export function makeServer() {
     },
     fixtures: {
       countries: [
-        { id: 1, name: "USA" },
-        { id: 2, name: "UK" },
-        { id: 3, name: "Germany" },
-        { id: 4, name: "France" },
+        { id: 1, name: "USA", vat: 20 },
+        { id: 2, name: "UK", vat: 22 },
+        { id: 3, name: "Germany", vat: 23 },
+        { id: 4, name: "France", vat: 25 },
       ],
     },
 
