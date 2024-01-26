@@ -6,12 +6,14 @@ import { isLightTheme } from "../../utils/uiUtils";
 import styles from "./PrimaryButton.module.scss";
 interface PrimaryButtonProps {
   text: string;
+  isDisabled?: boolean;
   onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   classNames?: string[];
 }
 
 const PrimaryButton: React.FC<PrimaryButtonProps> = ({
   text,
+  isDisabled,
   onClick,
   classNames = [],
 }) => {
@@ -26,6 +28,7 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
       type="primary"
       className={[styles.button, themeClassName, ...classNames].join(" ")}
       onClick={onClick}
+      disabled={isDisabled}
     >
       {text}
     </Button>
