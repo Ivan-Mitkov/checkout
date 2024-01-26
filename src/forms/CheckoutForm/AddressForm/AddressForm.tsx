@@ -41,7 +41,6 @@ const AddressForm: React.FC<AddressFormProps> = ({
   isDisabled,
   errors,
 }) => {
-  console.log(errors);
   return (
     <div className={styles.container}>
       <div>Name</div>

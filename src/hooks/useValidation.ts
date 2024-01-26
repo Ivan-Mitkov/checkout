@@ -1,15 +1,9 @@
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import { Rules } from "../types";
 
 type Data = {
   [key: string]: any;
 };
-
-type ErrorState =
-  | undefined
-  | {
-      [key: string]: string;
-    };
 
 const getErrors = (data: Data, fields: string[] = [], rules: Rules) => {
   const errors = fields
@@ -22,7 +16,7 @@ const getErrors = (data: Data, fields: string[] = [], rules: Rules) => {
     .filter((errors) => errors)
     .reduce((acc, element) => ({ ...acc, ...element }), {});
 
-  return errors;
+  return errors || {};
 };
 
 export const useValidation = (
@@ -31,13 +25,11 @@ export const useValidation = (
   rules: Rules,
   shouldValidate: boolean
 ) => {
-  const [errors, setErrors] = useState<ErrorState>();
+  const errors = useMemo(() => {
+    if (!shouldValidate) return {};
 
-  useEffect(() => {
-    if (!shouldValidate) return;
-
-    setErrors(getErrors(data, fields, rules));
+    return getErrors(data, fields, rules);
   }, [data, shouldValidate, fields]);
 
-  return errors || {};
+  return { errors, getErrors };
 };

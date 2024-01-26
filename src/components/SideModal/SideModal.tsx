@@ -33,12 +33,12 @@ const SideModal: React.ElementType<SideModalProps> = ({
   }, []);
 
   useEffect(() => {
-    document.addEventListener("keydown", onEscapePress, false);
+    document.addEventListener("keydown", onEscapePress, { passive: true });
     const body = document.querySelector("body");
     body?.classList.add(styles.hideScroll);
 
     return () => {
-      document.removeEventListener("keydown", onEscapePress, false);
+      document.removeEventListener("keydown", onEscapePress);
       body?.classList.remove(styles.hideScroll);
     };
   }, []);
@@ -64,7 +64,7 @@ const SideModal: React.ElementType<SideModalProps> = ({
         handleModalClose();
       }
     }
-    document.addEventListener("click", handleClickOutside);
+    document.addEventListener("click", handleClickOutside, { passive: true });
 
     return () => {
       document.removeEventListener("click", handleClickOutside);

@@ -80,7 +80,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose }) => {
     [data.country]
   );
 
-  const errors = useValidation(
+  const { errors, getErrors } = useValidation(
     data,
     FieldsToValidate,
     ValidationRules,
@@ -114,16 +114,16 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose }) => {
     ]);
 
   const handleNext = () => {
-    setShouldValidate(true);
-
-    if (!isEmpty(errors)) return;
+    if (!isEmpty(getErrors(data, FieldsToValidate, ValidationRules))) {
+      setShouldValidate(true);
+      return;
+    }
 
     next();
   };
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-
     onClose();
 
     alert(JSON.stringify(data));
