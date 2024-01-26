@@ -1,0 +1,137 @@
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content:flex-end;
+  align-items: center;
+  z-index: 999;
+
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    animation: fadeIn 0.3s ease-in-out;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 999;
+  }
+
+  .contentContainer {
+    position: relative;
+    opacity: 1 !important;
+    width: 50%;
+    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
+    padding: 20px 0 0 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.3s ease-in-out;
+    z-index: 1000;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+
+    @media only screen and (max-width: 1000px) {
+      width: 80%;
+     }
+
+    @media only screen and (max-width: 600px) {
+      width: 100%;
+     }
+
+    .content {
+      overflow-y: auto;
+      height: 100%;
+      padding-right: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+  
+
+    .loading {
+      opacity: 0.5;
+    }
+
+    .spinner {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .lightTheme{
+    background-color: #f2f3f4;
+    color:#121212
+  }
+
+  .darkTheme{
+    background-color:#121212;
+    color:#f2f3f4
+  }
+ 
+  .close {
+    animation: hideIn 0.4s ease-in-out;
+    opacity: 0;
+  }
+
+  .hide {
+    animation: fadeOut 0.4s ease-in-out;
+    opacity: 0;
+  }
+
+  .divider {
+    margin: 0;
+  }
+}
+
+.hideScroll {
+  overflow: hidden;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes hideIn {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}

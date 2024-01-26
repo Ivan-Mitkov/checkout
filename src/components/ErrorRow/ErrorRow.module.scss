@@ -1,0 +1,11 @@
+
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+
+  .text {
+    color: red;
+    font-size: 12px;
+  }
+}

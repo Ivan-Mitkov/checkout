@@ -13,7 +13,7 @@ const CartList: React.FC<CartListProps> = ({ data }) => {
   return (
     <div className={styles.container}>
       {data.map((item) => (
-        <Cart item={item} />
+        <Cart key={item?.name} item={item} />
       ))}
     </div>
   );
