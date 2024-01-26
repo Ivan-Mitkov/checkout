@@ -1,8 +1,10 @@
 import React, { useMemo, useState, FormEvent } from "react";
+import { useNavigate } from "react-router";
 import isEmpty from "lodash.isempty";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useMultistepForm } from "../../hooks/useMultistepForm";
 import { useValidation } from "../../hooks/useValidation";
+import { ConfirmationModal } from "../../components";
 
 import Header from "./Header";
 import Footer from "./Footer";
@@ -60,6 +62,9 @@ interface CheckoutFormProps {
 const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose }) => {
   const [data, setData] = useState(INITIAL_DATA);
   const [shouldValidate, setShouldValidate] = useState(false);
+  const [isOpenConfirmationModal, setIsOpenConfirmationModal] = useState(false);
+
+  const navigate = useNavigate();
 
   const theme = useTypedSelector((state) => state.ui.theme);
 
@@ -124,9 +129,8 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose }) => {
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-    onClose();
 
-    alert(JSON.stringify(data));
+    setIsOpenConfirmationModal(true);
   };
 
   const renderFormContent = () => (
@@ -164,6 +168,15 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose }) => {
           isDisabled={!isEmpty(errors)}
         />
       </form>
+
+      <ConfirmationModal
+        isOpen={isOpenConfirmationModal}
+        onCancel={() => setIsOpenConfirmationModal(false)}
+        onOk={() => {
+          navigate("/receipt");
+          onClose();
+        }}
+      />
     </div>
   );
 };
