@@ -30,11 +30,19 @@ const SideModal: React.ElementType<SideModalProps> = ({
   const modalRef = useRef<HTMLInputElement>(null);
   const modalContentRef = useRef<HTMLInputElement>(null);
 
-  const onEscapePress = useCallback((event: KeyboardEvent) => {
-    if (event.key === "Escape") {
-      handleModalClose();
-    }
-  }, []);
+  const handleModalClose = useCallback(() => {
+    setTimeout(() => handleClose(), 300);
+    setIsClosing(true);
+  }, [handleClose]);
+
+  const onEscapePress = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        handleModalClose();
+      }
+    },
+    [handleModalClose]
+  );
 
   useEffect(() => {
     document.addEventListener("keydown", onEscapePress, { passive: true });
@@ -45,12 +53,7 @@ const SideModal: React.ElementType<SideModalProps> = ({
       document.removeEventListener("keydown", onEscapePress);
       body?.classList.remove(styles.hideScroll);
     };
-  }, []);
-
-  const handleModalClose = () => {
-    setTimeout(() => handleClose(), 300);
-    setIsClosing(true);
-  };
+  }, [onEscapePress]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -73,7 +76,7 @@ const SideModal: React.ElementType<SideModalProps> = ({
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, [modalRef]);
+  }, [modalRef, handleModalClose]);
 
   const themeClassName: string = isLightTheme(theme)
     ? styles.lightTheme

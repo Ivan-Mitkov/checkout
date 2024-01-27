@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Dispatch } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 
@@ -16,25 +16,28 @@ const useBackendCall = (apiFuncArray: ApiFunc[]): UseBackendCallResult => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const executeRequest = async () => {
-    setLoading(true);
-    try {
-      await Promise.all(apiFuncArray.map((apiFunc) => dispatch(apiFunc())));
-    } catch (err: any) {
-      console.log(err);
-      setError(err.message || "Unexpected Error!");
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  };
+  const executeRequest = useCallback(
+    () => async () => {
+      setLoading(true);
+      try {
+        await Promise.all(apiFuncArray.map((apiFunc) => dispatch(apiFunc())));
+      } catch (err: any) {
+        console.log(err);
+        setError(err.message || "Unexpected Error!");
+        throw err;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [apiFuncArray, dispatch]
+  );
 
   useEffect(() => {
     // if another request is running - do not execute another one
     if (loading) return;
 
     executeRequest();
-  }, []);
+  }, [loading, executeRequest]);
 
   return {
     error,
