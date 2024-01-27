@@ -6,20 +6,9 @@ import { ReceiptItem } from "../../types";
 import Total from "./Total";
 import styles from "./ReceiptPage.module.scss";
 
-import useBackendCall from "../../hooks/useBackendCall";
-import { doGetProductsRequest } from "../../state/products";
-import {
-  doGetCitiesRequest,
-  doGetCountriesRequest,
-} from "../../state/locations";
-
 const Receipt: React.FC = () => {
   const navigate = useNavigate();
-  useBackendCall([
-    doGetProductsRequest,
-    doGetCitiesRequest,
-    doGetCountriesRequest,
-  ]);
+
   const productsList = useTypedSelector((state) => state.products.data);
   const country = useTypedSelector((state) => state.locations.selectedCountry);
   const receiptProducts = productsList.map((product) => {

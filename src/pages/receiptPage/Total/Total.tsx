@@ -12,10 +12,12 @@ interface TotalProps {
   }[];
 }
 const Total: React.FC<TotalProps> = ({ data }) => {
-  const totalPrice = data.reduce(
-    (acc, product) => acc + calculateTotalPrice(product.price, product.vat),
-    0
-  );
+  const totalPrice = data
+    .reduce(
+      (acc, product) => acc + calculateTotalPrice(product.price, product.vat),
+      0
+    )
+    .toFixed(2);
 
   return (
     <div className={styles.container}>
