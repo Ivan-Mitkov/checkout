@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { doGetProductsRequest } from "../../state/products";
-import {
-  doGetCitiesRequest,
-  doGetCountriesRequest,
-} from "../../state/locations";
+import { doGetCountriesRequest } from "../../state/locations";
 import useBackendCall from "../../hooks/useBackendCall";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { SideModal } from "../../components";
@@ -14,11 +11,7 @@ import styles from "./CartPage.module.scss";
 
 const CartPage: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
-  useBackendCall([
-    doGetProductsRequest,
-    doGetCitiesRequest,
-    doGetCountriesRequest,
-  ]);
+  useBackendCall([doGetProductsRequest, doGetCountriesRequest]);
 
   const products = useTypedSelector((state) => state.products.data);
 

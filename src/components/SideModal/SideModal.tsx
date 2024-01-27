@@ -5,6 +5,8 @@ import React, {
   useRef,
   useState,
 } from "react";
+import useBackendCall from "../../hooks/useBackendCall";
+import { doGetCitiesRequest } from "../../state/locations";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { isLightTheme } from "../../utils/uiUtils";
 import { KeyboardEvent } from "../../types/";
@@ -19,6 +21,8 @@ const SideModal: React.ElementType<SideModalProps> = ({
   handleClose,
   children,
 }) => {
+  useBackendCall([doGetCitiesRequest]);
+
   const theme = useTypedSelector((state) => state.ui.theme);
 
   const [isClosing, setIsClosing] = useState(false);
