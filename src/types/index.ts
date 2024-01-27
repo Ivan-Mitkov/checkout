@@ -32,6 +32,8 @@ export type Rules = {
   };
 };
 
-export interface CartInteface {
-  item: CartItem ;
-}
+export type ReceiptItem = {
+  name: string;
+  price: number;
+  vat?: number;
+};

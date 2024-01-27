@@ -33,10 +33,7 @@ const CartPage: React.FC = () => {
   return (
     <div className={styles.container}>
       <h1>Products</h1>
-      <CartList
-        data={products}
-        renderItem={renderCustomItem}
-      />
+      <CartList data={products} renderItem={renderCustomItem} />
       <div className={styles.buttonContainer}>
         <PrimaryButton text="Order" onClick={(e) => setShowModal(true)} />
       </div>

@@ -8,4 +8,10 @@
     align-items: center;
 
   }
+
+  .customContainer{
+    display: flex;
+    flex-direction: column;
+    gap:10px
+  }
 }

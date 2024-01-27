@@ -1,18 +1,10 @@
 import { Dispatch } from "redux";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+import { City, Country } from "../../types";
+
 import { getCountriesRequest, getCitiesRequest } from "../../api/geoService";
 
-interface City {
-  id: string;
-  name: string;
-  country?: Country;
-}
-
-interface Country {
-  id: string;
-  name: string;
-}
 interface LocationState {
   cities: City[];
   countries: Country[];
@@ -23,7 +15,7 @@ const locationSlice = createSlice({
   initialState: {
     cities: [],
     countries: [],
-    selectedCountry: null,
+    selectedCountry: { id: "", name: "", vat: 0 },
   } as LocationState,
   reducers: {
     setCities(state, action: PayloadAction<City[]>) {

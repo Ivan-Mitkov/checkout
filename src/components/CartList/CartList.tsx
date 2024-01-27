@@ -1,20 +1,18 @@
 import React from "react";
 
-import { CartItem } from "../../types";
-
 import styles from "./CartList.module.scss";
 
-export interface CartListProps<T = CartItem> {
+export interface CartListProps<T> {
   data: T[];
   renderItem: (item: T) => React.ReactElement;
   listClassName?: string;
 }
 
-const CartList: React.FC<CartListProps> = ({
+const CartList = <T extends {}>({
   data,
   renderItem,
   listClassName,
-}) => {
+}: CartListProps<T>) => {
   return (
     <div className={listClassName || styles.container}>
       {data.map((item, index) => (
