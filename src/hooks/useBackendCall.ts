@@ -1,8 +1,16 @@
 import { useEffect, useState } from "react";
+import { Dispatch } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 
-const useBackendCall = (apiFuncArray: any[]) => {
-  const dispatch = useDispatch();
+type ApiFunc = () => (dispatch: Dispatch) => Promise<any>;
+
+type UseBackendCallResult = {
+  error: string;
+  loading: boolean;
+};
+
+const useBackendCall = (apiFuncArray: ApiFunc[]): UseBackendCallResult => {
+  const dispatch = useDispatch<Dispatch<any>>();
 
   // state
   const [error, setError] = useState("");
@@ -11,7 +19,7 @@ const useBackendCall = (apiFuncArray: any[]) => {
   const executeRequest = async () => {
     setLoading(true);
     try {
-      apiFuncArray.forEach(async (apiFunc) => await dispatch(apiFunc()));
+      await Promise.all(apiFuncArray.map((apiFunc) => dispatch(apiFunc())));
     } catch (err: any) {
       console.log(err);
       setError(err.message || "Unexpected Error!");
