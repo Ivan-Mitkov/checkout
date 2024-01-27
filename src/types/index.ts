@@ -31,3 +31,7 @@ export type Rules = {
     errorMessage: string;
   };
 };
+
+export interface CartInteface {
+  item: CartItem ;
+}
