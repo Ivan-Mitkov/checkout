@@ -20,6 +20,15 @@ const locationSlice = createSlice({
   reducers: {
     setCities(state, action: PayloadAction<City[]>) {
       state.cities = action.payload;
+
+      const countriesLenght = state.countries.length;
+      if (countriesLenght) {
+        const citiesWithCountry = state.cities.map((city, index) => ({
+          ...city,
+          country: state.countries[index % countriesLenght],
+        }));
+        state.cities = citiesWithCountry;
+      }
     },
     setSelectedCountry(state, action: PayloadAction<Country>) {
       state.selectedCountry = action.payload;
