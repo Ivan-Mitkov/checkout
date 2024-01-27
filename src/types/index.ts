@@ -20,6 +20,13 @@ export type Country = {
   vat: number;
 };
 
+export type Product = {
+  id: string;
+  name: string;
+  price: string;
+  imageUrl: string;
+};
+
 export type SelectOptions = {
   label: string;
   value: string;

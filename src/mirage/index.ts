@@ -1,6 +1,6 @@
 import { createServer, Model, Factory, RestSerializer } from "miragejs";
 import { faker } from "@faker-js/faker";
-import { Product } from "../api/productsService";
+import { Product } from "../types";
 import { City, Country } from "../types";
 
 export function makeServer() {

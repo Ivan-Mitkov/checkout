@@ -1,15 +1,10 @@
 import apiClient from "./apiClient";
-
-export type Product = {
-  id: string;
-  name: string;
-  price: string;
-  imageUrl: string;
-};
+import { Product } from "../types";
 
 type ProductResponse = {
   product: Product[];
 };
+
 export const getProductsRequest = async () => {
   let url = "/products";
 

@@ -1,6 +1,5 @@
 .container{
   max-width: 100vw;
-  
 
   .buttonContainer{
     display: flex;
@@ -12,6 +11,8 @@
   .customContainer{
     display: flex;
     flex-direction: column;
-    gap:10px
+    gap:40px;
+    padding: 40px ;
+
   }
 }
