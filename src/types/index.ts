@@ -17,6 +17,14 @@ export type City = {
 export type Country = {
   id: string;
   name: string;
+  vat: number;
+};
+
+export type Product = {
+  id: string;
+  name: string;
+  price: string;
+  imageUrl: string;
 };
 
 export type SelectOptions = {
@@ -29,4 +37,10 @@ export type Rules = {
     validator: (value: any) => boolean;
     errorMessage: string;
   };
+};
+
+export type ReceiptItem = {
+  name: string;
+  price: number;
+  vat?: number;
 };

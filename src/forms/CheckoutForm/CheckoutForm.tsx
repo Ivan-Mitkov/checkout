@@ -1,8 +1,13 @@
 import React, { useMemo, useState, FormEvent } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 import isEmpty from "lodash.isempty";
+
+import { setSelectedCountry } from "../../state/locations";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useMultistepForm } from "../../hooks/useMultistepForm";
 import { useValidation } from "../../hooks/useValidation";
+import { ConfirmationModal } from "../../components";
 
 import Header from "./Header";
 import Footer from "./Footer";
@@ -57,14 +62,26 @@ const ValidationRules: Rules = {
 interface CheckoutFormProps {
   onClose: () => void;
 }
+
 const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose }) => {
   const [data, setData] = useState(INITIAL_DATA);
   const [shouldValidate, setShouldValidate] = useState(false);
+  const [isOpenConfirmationModal, setIsOpenConfirmationModal] = useState(false);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const theme = useTypedSelector((state) => state.ui.theme);
 
-  const countries = useTypedSelector((state) => state.locations.countries).map(
-    (country) => ({ value: country?.id, label: country?.name })
+  const countries = useTypedSelector((state) => state.locations.countries);
+
+  const countriesOptions = useMemo(
+    () =>
+      countries.map((country) => ({
+        value: country?.id,
+        label: country?.name,
+      })),
+    [countries]
   );
 
   const cities = useTypedSelector((state) => state.locations.cities).map(
@@ -106,7 +123,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose }) => {
       <AddressForm
         {...data}
         updateFields={updateFields}
-        countriesOptions={countries}
+        countriesOptions={countriesOptions}
         citiesOptions={citiesOptions}
         errors={errors}
       />,
@@ -124,9 +141,15 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose }) => {
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-    onClose();
+    const selectedCountry = countries.find(
+      (country) => country.id == data.country
+    );
 
-    alert(JSON.stringify(data));
+    if (selectedCountry) {
+      dispatch(setSelectedCountry(selectedCountry));
+    }
+
+    setIsOpenConfirmationModal(true);
   };
 
   const renderFormContent = () => (
@@ -138,7 +161,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose }) => {
           <AddressForm
             {...data}
             updateFields={updateFields}
-            countriesOptions={countries}
+            countriesOptions={countriesOptions}
             citiesOptions={citiesOptions}
             isDisabled={true}
             errors={errors}
@@ -164,6 +187,15 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose }) => {
           isDisabled={!isEmpty(errors)}
         />
       </form>
+
+      <ConfirmationModal
+        isOpen={isOpenConfirmationModal}
+        onCancel={() => setIsOpenConfirmationModal(false)}
+        onOk={() => {
+          navigate("/receipt");
+          onClose();
+        }}
+      />
     </div>
   );
 };

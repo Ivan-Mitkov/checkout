@@ -7,3 +7,5 @@ export { default as CartList } from "./CartList";
 export { default as PrimaryButton } from "./PrimaryButton";
 export { default as SideModal } from "./SideModal";
 export { default as ErrorRow } from "./ErrorRow";
+export { default as ConfirmationModal } from "./ConfirmationModal";
+export { default as ReceiptCart } from "./ReceiptCart";
