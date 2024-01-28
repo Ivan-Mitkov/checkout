@@ -1,14 +1,12 @@
 import apiClient from "./apiClient";
 import { Product } from "../types";
 
-type ProductResponse = {
-  product: Product[];
-};
+interface ProductResponse {
+  data: { products: Product[] };
+}
 
-export const getProductsRequest = async () => {
+export const getProductsRequest = (): Promise<ProductResponse> => {
   let url = "/products";
 
-  return apiClient.get(url).then((res) => {
-    return res;
-  });
+  return apiClient.get<ProductResponse, any>(url);
 };

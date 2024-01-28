@@ -30,7 +30,6 @@ const useBackendCall = (apiFuncArray: ApiFunc[]): UseBackendCallResult => {
   }, []);
 
   useEffect(() => {
-    // if another request is running - do not execute another one
     if (loading) return;
 
     executeRequest();

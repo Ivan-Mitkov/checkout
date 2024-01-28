@@ -4,6 +4,7 @@ import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { isLightTheme } from "../../utils/uiUtils";
 
 import styles from "./PrimaryButton.module.scss";
+
 interface PrimaryButtonProps {
   text: string;
   isDisabled?: boolean;

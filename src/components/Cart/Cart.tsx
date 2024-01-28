@@ -9,6 +9,7 @@ interface CartProps {
 
 const Cart: React.FC<CartProps> = ({ item }) => {
   const { name, price, imageUrl } = item;
+
   return (
     <div className={styles.container}>
       <img src={imageUrl} />

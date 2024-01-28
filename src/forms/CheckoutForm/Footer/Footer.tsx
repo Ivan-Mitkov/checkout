@@ -12,6 +12,7 @@ interface FooterProps {
   next: () => void;
   onClose: () => void;
 }
+
 const Footer: React.FC<FooterProps> = ({
   isFirstStep,
   isLastStep,
@@ -23,7 +24,11 @@ const Footer: React.FC<FooterProps> = ({
 }) => {
   return (
     <div className={styles.container}>
-      <PrimaryButton text="Back" onClick={isFirstStep ? onClose : back} isDisabled={false}/>
+      <PrimaryButton
+        text="Back"
+        onClick={isFirstStep ? onClose : back}
+        isDisabled={false}
+      />
       <PrimaryButton
         onClick={isLastStep ? onSubmit : next}
         text={isLastStep ? "Complete the order" : "Next"}

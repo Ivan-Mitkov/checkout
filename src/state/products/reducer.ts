@@ -2,12 +2,8 @@ import { Dispatch } from "redux";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { getProductsRequest } from "../../api/productsService";
+import { Product } from "../../types";
 
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-}
 interface ProductsState {
   data: Product[];
 }

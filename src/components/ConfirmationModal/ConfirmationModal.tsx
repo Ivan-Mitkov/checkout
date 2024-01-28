@@ -3,6 +3,7 @@ import { Modal } from "antd";
 import { PrimaryButton } from "../../components";
 
 import styles from "./ConfirmationModal.module.scss";
+
 interface ConfirmationModalPropTypes {
   isOpen: boolean;
   onCancel: () => void;

@@ -3,9 +3,12 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
+  margin-top: 4px;
 
   .text {
     color: red;
-    font-size: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 700;
   }
 }

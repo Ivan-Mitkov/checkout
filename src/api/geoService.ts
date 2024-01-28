@@ -1,21 +1,25 @@
 import apiClient from "./apiClient";
 import { City, Country } from "../types";
 
-type CountryResponse = {
-  country: Country[];
-};
+interface CountryResponse {
+  data: {
+    countries: Country[];
+  };
+}
 
-type CityResponse = {
-  city: City[];
-};
-export const getCountriesRequest = () => {
+interface CityResponse {
+  data: {
+    cities: City[];
+  };
+}
+export const getCountriesRequest = (): Promise<CountryResponse> => {
   let url = "/countries";
 
-  return apiClient.get(url);
+  return apiClient.get<CountryResponse, any>(url);
 };
 
-export const getCitiesRequest = () => {
+export const getCitiesRequest = (): Promise<CityResponse> => {
   let url = "/cities";
 
-  return apiClient.get(url);
+  return apiClient.get<CityResponse, any>(url);
 };

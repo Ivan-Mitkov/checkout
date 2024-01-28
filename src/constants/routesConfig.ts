@@ -1,4 +1,3 @@
-import React, { ReactNode } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { CartPage, ReceiptPage, ErrorPage } from "../pages";
 import { Layout } from "../components";
