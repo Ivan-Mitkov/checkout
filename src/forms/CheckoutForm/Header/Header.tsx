@@ -10,6 +10,7 @@ interface HeaderProps {
   theme: string;
   onClose: () => void;
 }
+
 const Header: React.FC<HeaderProps> = ({ title, theme, onClose }) => {
   const renderCloseIcon = () =>
     isLightTheme(theme) ? <MdOutlineClose /> : <SlClose />;

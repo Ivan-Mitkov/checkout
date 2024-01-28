@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AppBar } from "../../components";
 
 import styles from "./ErrorPage.module.scss";
+
 const ErrorPage = () => {
   return (
     <div>

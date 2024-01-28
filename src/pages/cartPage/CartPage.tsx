@@ -7,10 +7,12 @@ import { SideModal } from "../../components";
 import { CheckoutForm } from "../../forms";
 import { CartItem } from "../../types";
 import { Cart, CartList, PrimaryButton } from "../../components";
+
 import styles from "./CartPage.module.scss";
 
 const CartPage: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
+
   useBackendCall([doGetProductsRequest, doGetCountriesRequest]);
 
   const products = useTypedSelector((state) => state.products.data);

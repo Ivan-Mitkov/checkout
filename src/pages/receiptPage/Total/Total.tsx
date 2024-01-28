@@ -11,6 +11,7 @@ interface TotalProps {
     price: number;
   }[];
 }
+
 const Total: React.FC<TotalProps> = ({ data }) => {
   const totalPrice = data
     .reduce(

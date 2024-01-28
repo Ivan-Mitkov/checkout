@@ -28,13 +28,16 @@ const useTheme = (initialTheme: UseThemeProps): ThemeValues => {
       dispatch(setTheme(savedTheme));
     } else {
       dispatch(setTheme(initialTheme));
+
       localStorage.setItem(THEME_KEY, initialTheme);
     }
   }, [dispatch, initialTheme]);
 
   const onThemeChange = () => {
     const newTheme = currentTheme === Theme.light ? Theme.dark : Theme.light;
+
     dispatch(setTheme(newTheme));
+
     localStorage.setItem(THEME_KEY, newTheme);
   };
 

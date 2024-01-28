@@ -2,7 +2,6 @@ import { Dispatch } from "redux";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { City, Country } from "../../types";
-
 import { getCountriesRequest, getCitiesRequest } from "../../api/geoService";
 
 interface LocationState {
@@ -10,6 +9,7 @@ interface LocationState {
   countries: Country[];
   selectedCountry?: Country | null;
 }
+
 const locationSlice = createSlice({
   name: "location",
   initialState: {

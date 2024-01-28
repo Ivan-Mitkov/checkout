@@ -13,7 +13,8 @@ import Header from "./Header";
 import Footer from "./Footer";
 import AddressForm from "./AddressForm";
 import PromoForm from "./PromoForm";
-import { Rules } from "../../types";
+import { ValidationRules } from "./rules";
+
 import styles from "./ChackoutForm.module.scss";
 
 type FormData = {
@@ -35,29 +36,6 @@ const INITIAL_DATA: FormData = {
 };
 
 const FieldsToValidate = ["name", "email", "country", "city", "street"];
-
-const ValidationRules: Rules = {
-  name: {
-    validator: (v: any) => !isEmpty(v),
-    errorMessage: "Name is mandatory",
-  },
-  email: {
-    validator: (v: any) => !isEmpty(v),
-    errorMessage: "Email is mandatory",
-  },
-  country: {
-    validator: (v: any) => !isEmpty(v),
-    errorMessage: "Country is mandatory",
-  },
-  city: {
-    validator: (v: any) => !isEmpty(v),
-    errorMessage: "City is mandatory",
-  },
-  street: {
-    validator: (v: any) => !isEmpty(v),
-    errorMessage: "Street is mandatory",
-  },
-};
 
 interface CheckoutFormProps {
   onClose: () => void;
@@ -118,17 +96,16 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose }) => {
     });
   };
 
-  const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
-    useMultistepForm([
-      <AddressForm
-        {...data}
-        updateFields={updateFields}
-        countriesOptions={countriesOptions}
-        citiesOptions={citiesOptions}
-        errors={errors}
-      />,
-      <PromoForm {...data} updateFields={updateFields} />,
-    ]);
+  const { step, isFirstStep, isLastStep, back, next } = useMultistepForm([
+    <AddressForm
+      {...data}
+      updateFields={updateFields}
+      countriesOptions={countriesOptions}
+      citiesOptions={citiesOptions}
+      errors={errors}
+    />,
+    <PromoForm {...data} updateFields={updateFields} />,
+  ]);
 
   const handleNext = () => {
     if (!isEmpty(getErrors(data, FieldsToValidate, ValidationRules))) {
@@ -141,6 +118,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose }) => {
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
+
     const selectedCountry = countries.find(
       (country) => country.id == data.country
     );
@@ -187,7 +165,6 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose }) => {
           isDisabled={!isEmpty(errors)}
         />
       </form>
-
       <ConfirmationModal
         isOpen={isOpenConfirmationModal}
         onCancel={() => setIsOpenConfirmationModal(false)}

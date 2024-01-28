@@ -4,6 +4,7 @@ import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { ReceiptCart, CartList, PrimaryButton } from "../../components";
 import { ReceiptItem } from "../../types";
 import Total from "./Total";
+
 import styles from "./ReceiptPage.module.scss";
 
 const Receipt: React.FC = () => {
@@ -11,6 +12,7 @@ const Receipt: React.FC = () => {
 
   const productsList = useTypedSelector((state) => state.products.data);
   const country = useTypedSelector((state) => state.locations.selectedCountry);
+
   const receiptProducts = productsList.map((product) => {
     if (country) {
       return {
